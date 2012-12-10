@@ -1,21 +1,24 @@
 package plateau;
 
+import joueur.JVaisGagner;
+
 public class Plateau {
-	private Integer grille[][] = {{-1, -1, -1, 1, 1, 1, -1, -1, -1},
-								  {-1, -1, -1, 1, 1, 1, -1, -1, -1},
-								  {-1, -1,  1, 1, 1, 1,  1, -1, -1},
-								  { 0,  0,  1, 1, 1, 1,  1,  0,  0},
-								  { 0,  0,  0, 0, 0, 0,  0,  0,  0},
-								  { 0,  0,  2, 2, 2, 2,  2,  0,  0},
-								  {-1, -1,  2, 2, 2, 2,  2, -1, -1},
-								  {-1, -1, -1, 2, 2, 2, -1, -1, -1},
-								  {-1, -1, -1, 2, 2, 2, -1, -1, -1}
+	private final int b=JVaisGagner.BLANC, n=JVaisGagner.NOIR, v=JVaisGagner.VIDE, o=JVaisGagner.OUT;
+	private Integer grille[][] = {{o, o, o, b, b, b, o, o, o},
+								  {o, o, o, b, b, b, o, o, o},
+								  {o, o, b, b, b, b, b, o, o},
+								  {v, v, b, b, b, b, b, v, v},
+								  {v, v, v, v, v, v, v, v, v},
+								  {v, v, n, n, n, n, n, v, v},
+								  {o, o, n, n, n, n, n, o, o},
+								  {o, o, o, n, n, n, o, o, o},
+								  {o, o, o, n, n, n, o, o, o}
 								 };
 	
 	public Plateau() {
 		System.out.println(toString());
 	}
-	
+
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		str.append("┌─────────┐\n");
@@ -23,10 +26,10 @@ public class Plateau {
 			str.append("│");
 			for(int j=0;j<grille[i].length;j++)
 				switch(grille[i][j]) {
-				case -1: str.append("+"); break;
-				case 0: str.append("."); break;
-				case 1: str.append("○"); break;
-				case 2: str.append("●"); break;
+				case o: str.append("+"); break;
+				case v: str.append("."); break;
+				case b: str.append("○"); break;
+				case n: str.append("●"); break;
 				}
 			str.append("│\n");
 		}
@@ -34,7 +37,5 @@ public class Plateau {
 		return str.toString();
 	}
 	
-	public static void main(String args[]) {
-		Plateau p = new Plateau();
-	}
+	public void set(int x, int y, int val) { grille[y-1][x-1] = val; }
 }
