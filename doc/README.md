@@ -1,4 +1,0 @@
-projetIA
-========
-
-projet d'IA
