@@ -16,6 +16,12 @@ public class Plateau {
 		System.out.println(toString());
 	}
 	
+	public void mouvementPion(int startCol, int startRow, int finishCol,
+			int finishRow){
+		//TODO
+	}
+	
+	
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		str.append("┌─────────┐\n");
