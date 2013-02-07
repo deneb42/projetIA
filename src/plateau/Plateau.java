@@ -20,8 +20,25 @@ public class Plateau {
 	}
 	
 	public void doMvt(Coup c) {
-		grille[c.dy][c.dx] = grille[c.oy][c.ox];
-		grille[c.oy][c.ox] = v;
+		int dx=0, dy=0;
+		
+		grille[c.dy][c.dx] = grille[c.oy][c.ox]; // dest = orig
+
+		if(c.dx-c.ox>1)
+			dx=1;
+		else if(c.dx-c.ox<1)
+			dx=-1;
+		if(c.dy-c.oy>1)
+			dy=1;
+		else if(c.dy-c.oy<1)
+			dy=-1;
+		if(dx!=0 || dy!=0) // si il y a eu une prise
+			if(grille[c.oy+dy][c.ox+dx]!=v)
+				grille[c.oy+dy][c.ox+dx] = v; // si la case est pleine, on jour le coup, on vide la case
+			else
+				grille[c.oy+dy][c.ox+dx] = grille[c.oy][c.ox]==n?b:n; // sinon on déjoue le coup, on place un pion de la couleur adverse
+		
+		grille[c.oy][c.ox] = v; // orig = vide
 	}
 
 	public String toString() {

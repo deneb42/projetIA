@@ -1,6 +1,6 @@
 package joueur;
 
-import plateau.Plateau;
+import plateau.*;
 
 public class Joueur implements IJoueur{
 	public static final int VIDE=0, OUT=-1;
@@ -35,20 +35,7 @@ public class Joueur implements IJoueur{
 
 	@Override
 	public void mouvementEnnemi(int startCol, int startRow, int finishCol, int finishRow) {
-		int dx=0, dy=0;
-		
-		p.set(startCol, startRow, VIDE);
-		p.set(finishCol, finishRow, enemyColor);
-		if(finishCol-startCol>1)
-			dx=1;
-		else if(finishCol-startCol<1)
-			dx=-1;
-		if(finishRow-startRow>1)
-			dy=1;
-		else if(finishRow-startRow<1)
-			dy=-1;
-		if(dx!=0 || dy!=0)
-			p.set(startCol+dx, startRow+dy, VIDE);
+		p.doMvt(new Coup(startCol, startRow, finishCol, finishRow));
 	}
 
 	@Override
