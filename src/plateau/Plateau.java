@@ -17,15 +17,15 @@ public class Plateau {
 								  {o, o, n, o, n, o, n, o, o}
 								 };
 	/* Masque permettant de représenter les déplacements possible sous forme d'un octet on valide ou non le déplacement, la case d'ou l'on peut partir dans toutes les directions vaut donc 255.
-	*  0 -> aucun déplacement
-	*  1 -> giagonale haut à gauche
-	*  2 -> déplacement vers le haut
-	*  4 -> diagonal haut droite
-	*  8 -> droite
-	*  16 -> diagonal bas droite
-	*  32 -> bas
-	*  64 -> diagonal bas gauche
-	*  128 -> gauche
+	*  0 -> aucun déplacement			0x00  masques
+	*  1 -> diagonale haut à gauche		0x01
+	*  2 -> déplacement vers le haut	0x02
+	*  4 -> diagonal haut droite		0x04
+	*  8 -> droite						0x08
+	*  16 -> diagonal bas droite		0x10
+	*  32 -> bas						0x20
+	*  64 -> diagonal bas gauche		0x40
+	*  128 -> gauche 					0x80
 	*/
 	public char masqueCoups[][] = {	{0, 0, 24, 0, 168, 0, 192, 0, 0},
 									{0, 0, 0, 25, 170, 196, 0, 0, 0},
