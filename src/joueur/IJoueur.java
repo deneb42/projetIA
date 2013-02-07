@@ -26,7 +26,7 @@ public interface IJoueur {
 	 */
 	public void initJoueur(int mycolour);
 
-	public int getNumJoueur(); // Doit retourner l'argument passÂ par la fonction ci-dessus (constantes BLANC ou NOIR)
+	public int getNumJoueur(); // Doit retourner l'argument passé par la fonction ci-dessus (constantes BLANC ou NOIR)
 
 	
 	/**

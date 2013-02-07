@@ -1,7 +1,6 @@
 package test;
 
 import joueur.Joueur;
-import plateau.Plateau;
 
 public class test {
 	
