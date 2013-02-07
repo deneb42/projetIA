@@ -13,8 +13,14 @@ public class Plateau {
 								 };
 	
 	public Plateau() {
-		System.out.println(toString());
+		System.out.println("Plateau initialisé\n"+toString());
 	}
+	
+	public void mouvementPion(int startCol, int startRow, int finishCol,
+			int finishRow){
+		//TODO
+	}
+	
 	
 	public String toString() {
 		StringBuilder str = new StringBuilder();
@@ -32,9 +38,5 @@ public class Plateau {
 		}
 		str.append("└─────────┘");
 		return str.toString();
-	}
-	
-	public static void main(String args[]) {
-		Plateau p = new Plateau();
 	}
 }
