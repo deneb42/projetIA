@@ -6,15 +6,15 @@ import joueur.Joueur;
 
 public class Plateau {
 	private final int b=Joueur.BLANC, n=Joueur.NOIR, v=Joueur.VIDE, o=Joueur.OUT;
-	private Integer grille[][] = {{o, o, o, b, b, b, o, o, o},
+	private Integer grille[][] = {{o, o, b, o, b, o, b, o, o},
 								  {o, o, o, b, b, b, o, o, o},
-								  {o, o, b, b, b, b, b, o, o},
-								  {v, v, b, b, b, b, b, v, v},
+								  {v, o, b, b, b, b, b, o, v},
+								  {o, v, b, b, b, b, b, v, o},
 								  {v, v, v, v, v, v, v, v, v},
-								  {v, v, n, n, n, n, n, v, v},
-								  {o, o, n, n, n, n, n, o, o},
+								  {o, v, n, n, n, n, n, v, o},
+								  {v, o, n, n, n, n, n, o, v},
 								  {o, o, o, n, n, n, o, o, o},
-								  {o, o, o, n, n, n, o, o, o}
+								  {o, o, n, o, n, o, n, o, o}
 								 };
 	/* Masque permettant de représenter les déplacements possible sous forme d'un octet on valide ou non le déplacement, la case d'ou l'on peut partir dans toutes les directions vaut donc 255.
 	*  0 -> aucun déplacement
