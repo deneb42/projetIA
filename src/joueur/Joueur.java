@@ -2,29 +2,29 @@ package joueur;
 
 import plateau.Plateau;
 
-
-
-public class Joueur implements IJoueur {
-
-	int ma_couleur;
-	Plateau mon_plateau;
+public class Joueur implements IJoueur{
+	public static final int VIDE=0, OUT=-1;
+	private static final String binoName = "Jean Badié - Benjamin Blois", 
+								win = "Yeah on est les meilleurs !", 
+								loose = "Ouaich c'est pas possib t'as triché quoi !";
+	private int color, enemyColor;
+	public Plateau p;
 	
-	public Joueur() {
-		mon_plateau = new Plateau();
+	public static void main(String args[]) {
+		Joueur jvg = new Joueur();
+		jvg.initJoueur(BLANC);
+		jvg.mouvementEnnemi(4, 2, 6, 4);
+		System.out.println(jvg.p.toString());
 	}
 	
-	public Joueur(int mycolour) {
-		mon_plateau = new Plateau();
-		ma_couleur = mycolour;
-	}
 	@Override
 	public void initJoueur(int mycolour) {
-		ma_couleur = mycolour;
-	}
-
-	@Override
-	public int getNumJoueur() {
-		return ma_couleur;
+		color = mycolour;
+		if(color==NOIR)
+			enemyColor=BLANC;
+		else
+			enemyColor=NOIR;
+		p = new Plateau();
 	}
 
 	@Override
@@ -34,23 +34,29 @@ public class Joueur implements IJoueur {
 	}
 
 	@Override
+	public void mouvementEnnemi(int startCol, int startRow, int finishCol, int finishRow) {
+		int dx=0, dy=0;
+		
+		p.set(startCol, startRow, 0);
+		p.set(finishCol, finishRow, enemyColor); // ATTENTION, IL FAUT EGALEMENT GERER LA PRISE.
+		if(finishCol-startCol>1)
+			dx=1;
+		else if(finishCol-startCol<1)
+			dx=-1;
+		if(finishRow-startRow>1)
+			dy=1;
+		else if(finishRow-startRow<1)
+			dy=-1;
+		if(dx!=0 || dy!=0)
+			p.set(startCol+dx, startRow+dy, 0);
+	}
+
+	@Override
 	public void declareLeVainqueur(int colour) {
-		if (colour==ma_couleur)
-			System.out.println("BRAVO, vous avez gagner !");
-		else System.out.println("Dommage, vous avez perdu, try again !");
-
+			System.out.println(color==colour?win:loose);
 	}
-
 	@Override
-	public void mouvementEnnemi(int startCol, int startRow, int finishCol,
-			int finishRow) {
-		mon_plateau.mouvementPion(startCol, startRow, finishCol, finishRow);
-
-	}
-
+	public String binoName() { return binoName; }
 	@Override
-	public String binoName() {
-		return "Jean BADIÉ & Benjamin BLOIS";
-	}
-
+	public int getNumJoueur() { return color; }
 }
