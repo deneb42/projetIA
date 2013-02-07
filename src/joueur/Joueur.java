@@ -7,7 +7,7 @@ public class Joueur implements IJoueur{
 	private static final String binoName = "Jean Badié - Benjamin Blois", 
 								win = "Yeah on est les meilleurs !", 
 								loose = "Ouaich c'est pas possib t'as triché quoi !";
-	private int color, enemyColor;
+	private int color;
 	public Plateau p;
 	
 	/*public static void main(String args[]) {
@@ -20,17 +20,17 @@ public class Joueur implements IJoueur{
 	@Override
 	public void initJoueur(int mycolour) {
 		color = mycolour;
-		if(color==NOIR)
-			enemyColor=BLANC;
-		else
-			enemyColor=NOIR;
 		p = new Plateau();
 	}
 
 	@Override
 	public String choixMouvement() {
-		// TODO Auto-generated method stub
-		return null;
+		String msg;
+		Coup c = new Coup();
+		
+		msg = "" + c.oy + " " + c.ox + " " + c.dy + " " + c.dx + '\0';
+		//System.out.println("Voici mon mouvement : " + msg);
+		return msg;
 	}
 
 	@Override
