@@ -1,5 +1,7 @@
 package plateau;
 
+import java.util.ArrayList;
+
 import joueur.Joueur;
 
 public class Plateau {
@@ -14,11 +16,37 @@ public class Plateau {
 								  {o, o, o, n, n, n, o, o, o},
 								  {o, o, o, n, n, n, o, o, o}
 								 };
+	/* Masque permettant de représenter les déplacements possible sous forme d'un octet on valide ou non le déplacement, la case d'ou l'on peut partir dans toutes les directions vaut donc 255.
+	*  0 -> aucun déplacement
+	*  1 -> giagonale haut à gauche
+	*  2 -> déplacement vers le haut
+	*  4 -> diagonal haut droite
+	*  8 -> droite
+	*  16 -> diagonal bas droite
+	*  32 -> bas
+	*  64 -> diagonal bas gauche
+	*  128 -> gauche
+	*/
+	public char masqueCoups[][] = {	{0, 0, 24, 0, 168, 0, 192, 0, 0},
+									{0, 0, 0, 25, 170, 196, 0, 0, 0},
+									{48, 0, 56, 168, 255, 168, 224, 0, 96},
+									{0, 49, 42, 255, 170, 255, 162, 0},
+									{42, 170, 255, 170, 255, 170, 255, 170, 162},
+									{0, 70, 42, 255, 170, 255, 162, 19, 0},
+									{8, 0, 14, 138, 255, 138, 131, 0, 3},
+									{0, 0, 0, 76, 170, 145, 0, 0, 0},
+									{0, 0, 12, 0, 138, 129, 0, 0}
+								   };
+
+	
 	
 	public Plateau() {
 		System.out.println(toString());
 	}
 	
+	void coupsAutorisés(){
+		
+	}
 	public void doMvt(Coup c) {
 		int dx=0, dy=0;
 		
@@ -55,7 +83,10 @@ public class Plateau {
 				}
 			str.append("│\n");
 		}
+		
 		str.append("└─────────┘");
+		str.append("\n");
+		
 		return str.toString();
 	}
 	
