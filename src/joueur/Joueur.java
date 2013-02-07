@@ -10,12 +10,12 @@ public class Joueur implements IJoueur{
 	private int color, enemyColor;
 	public Plateau p;
 	
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 		Joueur jvg = new Joueur();
 		jvg.initJoueur(BLANC);
 		jvg.mouvementEnnemi(4, 2, 6, 4);
 		System.out.println(jvg.p.toString());
-	}
+	}*/
 	
 	@Override
 	public void initJoueur(int mycolour) {
@@ -37,8 +37,8 @@ public class Joueur implements IJoueur{
 	public void mouvementEnnemi(int startCol, int startRow, int finishCol, int finishRow) {
 		int dx=0, dy=0;
 		
-		p.set(startCol, startRow, 0);
-		p.set(finishCol, finishRow, enemyColor); // ATTENTION, IL FAUT EGALEMENT GERER LA PRISE.
+		p.set(startCol, startRow, VIDE);
+		p.set(finishCol, finishRow, enemyColor);
 		if(finishCol-startCol>1)
 			dx=1;
 		else if(finishCol-startCol<1)
@@ -48,13 +48,11 @@ public class Joueur implements IJoueur{
 		else if(finishRow-startRow<1)
 			dy=-1;
 		if(dx!=0 || dy!=0)
-			p.set(startCol+dx, startRow+dy, 0);
+			p.set(startCol+dx, startRow+dy, VIDE);
 	}
 
 	@Override
-	public void declareLeVainqueur(int colour) {
-			System.out.println(color==colour?win:loose);
-	}
+	public void declareLeVainqueur(int colour) { System.out.println(color==colour?win:loose); }
 	@Override
 	public String binoName() { return binoName; }
 	@Override

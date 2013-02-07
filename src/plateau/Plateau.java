@@ -18,6 +18,11 @@ public class Plateau {
 	public Plateau() {
 		System.out.println(toString());
 	}
+	
+	public void doMvt(Coup c) {
+		grille[c.dy][c.dx] = grille[c.oy][c.ox];
+		grille[c.oy][c.ox] = v;
+	}
 
 	public String toString() {
 		StringBuilder str = new StringBuilder();
