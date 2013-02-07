@@ -1,15 +1,29 @@
 package algos;
 
+import heuristiques.Heuristique;
+
+import java.util.ArrayList;
+
+import plateau.Coup;
 import plateau.Plateau;
 
 public class AlphaBeta {
+	
+	Heuristique herp;
+	
+	public AlphaBeta(Heuristique h) {
+		herp = h;
+	}
 
-	public int maxValue(Plateau etat, int alpha, int beta){
-		if(etat.estFeuille()){
-			return etat.value();
+	public int maxValue(Plateau etat, int alpha, int beta, int h){
+		if(h==0){ // peut etre 1
+			return herp.evalue(etat);
 		}
-		for(int i = 0; i etat.getSesfils().Size(); i++){
-			alpha = Math.max(alpha, minValue(etat.getSesfils(i), alpha, beta));
+		ArrayList<Coup> coups = etat.getCoupspossibles();
+		for(int i = 0; i < coups.size(); i++){
+			etat.doMvt(coups.get(i));
+			alpha = Math.max(alpha, minValue(etat, alpha, beta, h-1));
+			etat.doMvt(coups.get(i)); // undo
 			if (alpha >= beta){
 				return beta;
 			}
@@ -17,12 +31,15 @@ public class AlphaBeta {
 		return alpha;
 	}
 	
-	public int minValue(Plateau etat, int alpha, int beta){
-		if(etat.estFeuille()){
-			return etat.value();
+	public int minValue(Plateau etat, int alpha, int beta, int h){
+		if(h==0){
+			return herp.evalue(etat);
 		}
-		for(int i = 0; i etat.getSesfils().Size(); i++){
-			beta = Math.min(beta, maxValue(etat.getSesfils(i), alpha, beta));
+		ArrayList<Coup> coups = etat.getCoupspossibles();
+		for(int i = 0; i < coups.size(); i++){
+			etat.doMvt(coups.get(i));
+			beta = Math.min(beta, maxValue(etat, alpha, beta, h-1));
+			etat.doMvt(coups.get(i)); // undo
 			if (alpha >= beta){
 				return alpha;
 			}

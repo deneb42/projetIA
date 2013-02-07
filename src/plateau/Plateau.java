@@ -61,14 +61,16 @@ public class Plateau {
 		else if(c.dy-c.oy<1)
 			dy=-1;
 		if(dx!=0 || dy!=0) // si il y a eu une prise
-			if(grille[c.oy+dy][c.ox+dx]!=v)
-				grille[c.oy+dy][c.ox+dx] = v; // si la case est pleine, on jour le coup, on vide la case
-			else
-				grille[c.oy+dy][c.ox+dx] = grille[c.oy][c.ox]==n?b:n; // sinon on déjoue le coup, on place un pion de la couleur adverse
+			if(grille[c.oy+dy][c.ox+dx]!=o) {// utile pour els triangles
+				if(grille[c.oy+dy][c.ox+dx]!=v)
+					grille[c.oy+dy][c.ox+dx] = v; // si la case est pleine, on jour le coup, on vide la case
+				else
+					grille[c.oy+dy][c.ox+dx] = grille[c.oy][c.ox]==n?b:n; // sinon on déjoue le coup, on place un pion de la couleur adverse
+			}
 		
 		grille[c.oy][c.ox] = v; // orig = vide
 	}
-
+	
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		str.append("┌─────────┐\n");
@@ -91,4 +93,9 @@ public class Plateau {
 	}
 	
 	public void set(int x, int y, int val) { grille[y-1][x-1] = val; }
+
+	public ArrayList<Coup> getCoupspossibles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
