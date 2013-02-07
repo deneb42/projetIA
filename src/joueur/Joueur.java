@@ -28,6 +28,8 @@ public class Joueur implements IJoueur{
 		String msg;
 		Coup c = new Coup();
 		
+		
+		
 		msg = "" + c.oy + " " + c.ox + " " + c.dy + " " + c.dx + '\0';
 		//System.out.println("Voici mon mouvement : " + msg);
 		return msg;

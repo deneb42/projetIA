@@ -35,14 +35,32 @@ public class Plateau {
 		else if(c.dy-c.oy<1)
 			dy=-1;
 		if(dx!=0 || dy!=0) // si il y a eu une prise
-			if(grille[c.oy+dy][c.ox+dx]!=o) {// utile pour els triangles
-				if(grille[c.oy+dy][c.ox+dx]!=v)
-					grille[c.oy+dy][c.ox+dx] = v; // si la case est pleine, on jour le coup, on vide la case
-				else
-					grille[c.oy+dy][c.ox+dx] = grille[c.oy][c.ox]==n?b:n; // sinon on déjoue le coup, on place un pion de la couleur adverse
+			if(grille[c.oy+dy][c.ox+dx]!=o) {// utile pour les triangles
+				grille[c.oy+dy][c.ox+dx] = v; // on retire le pion mangé
 			}
 		
 		grille[c.oy][c.ox] = v; // orig = vide
+	}
+	
+	public void undoMvt(Coup c) { // pourrait etre mixée avec la methode au dessus, mais on perdrait en perf.
+		int dx=0, dy=0;
+		
+		grille[c.oy][c.ox] = grille[c.dy][c.dx]; // orig = dest
+
+		if(c.dx-c.ox>1)
+			dx=1;
+		else if(c.dx-c.ox<1)
+			dx=-1;
+		if(c.dy-c.oy>1)
+			dy=1;
+		else if(c.dy-c.oy<1)
+			dy=-1;
+		if(dx!=0 || dy!=0) // si il y a eu une prise
+			if(grille[c.oy+dy][c.ox+dx]!=o) {// utile pour les triangles
+				grille[c.oy+dy][c.ox+dx] = grille[c.dy][c.dx]==n?b:n; // on replace un pion de la couleur adverse
+			}
+		
+		grille[c.dy][c.dx] = v; // dest = vide
 	}
 	
 	public String toString() {
