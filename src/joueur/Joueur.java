@@ -8,11 +8,18 @@ public class Joueur implements IJoueur {
 
 	int ma_couleur;
 	Plateau mon_plateau;
-	@Override
-	public void initJoueur(int mycolour) {
+	
+	public Joueur() {
+		mon_plateau = new Plateau();
+	}
+	
+	public Joueur(int mycolour) {
 		mon_plateau = new Plateau();
 		ma_couleur = mycolour;
-		
+	}
+	@Override
+	public void initJoueur(int mycolour) {
+		ma_couleur = mycolour;
 	}
 
 	@Override
