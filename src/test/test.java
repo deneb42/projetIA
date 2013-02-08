@@ -17,7 +17,7 @@ public class test {
 		//Plateau p = new Plateau();
 	}*/
 	
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 		Plateau p = new Plateau();
 		
 		if(((p.masqueCoups[0][4] & 0x80) != 0 ))
@@ -32,5 +32,13 @@ public class test {
 		}
 		else System.out.println("fail2");
 			
+	}*/
+	public static void main(String args[]) {
+		Plateau p = new Plateau();
+		
+		System.out.println(p.getCoupPossible(1));
+		System.out.println(p.getCoupPossible(2));
+			
 	}
+	
 }

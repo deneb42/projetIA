@@ -44,9 +44,57 @@ public class Plateau {
 		System.out.println(toString());
 	}
 	
-	void coupsAutorisés(){
+	public ArrayList<Coup> getCoupPossible(int couleur){
 		
+		ArrayList<Coup> coupsP = new ArrayList<Coup>();
+		
+		for(int i = 0; i< grille.length; i++){ //Parcours de la grille
+			for(int j = 0; j < grille[i].length; j++){
+				if(grille[i][j] == couleur ){// on ne regarde que pour les pionts de la couleur passée en arguments
+					char masque = masqueCoups[i][j]; // on récupère les déplacements possibles
+					
+					if((masque & 0x1) != 0){ // on masque le char avec 1 pour tester le déplacement vers la diagonal haut gauche
+						//diag haut gauche
+						coupsP.add(new Coup(j, i, j-1, i-1));
+					}
+					if((masque & 0x2) != 0){ // on masque le char avec 2 pour tester le déplacement vers le haut 
+						// haut 
+						coupsP.add(new Coup(j, i, j, i-1));
+					}
+					if((masque & 0x4) != 0){ // on masque le char avec 4 pour tester le déplacement vers la	diagonale haut droite 
+						//diag haut droite
+						coupsP.add(new Coup(j, i, j+1, i-1));
+					}
+					if((masque & 0x8) != 0){ // on masque le char avec 8 pour tester le déplacement vers la droite 
+						// droite 
+						coupsP.add(new Coup(j, i, j+1, i));
+					}
+					if((masque & 0x10) != 0){ // on masque le char avec 16 pour tester le déplacement vers la diag bas droite 
+						// diag bas droite 
+						coupsP.add(new Coup(j, i, j+1, i+1));
+					}
+					if((masque & 0x20) != 0){ // on masque le char avec 32 pour tester le déplacement vers le bas 
+						//  bas 
+						coupsP.add(new Coup(j, i, j, i+1));
+					}
+					if((masque & 0x40) != 0){ // on masque le char avec 64 pour tester le déplacement vers la diag bas gauche 
+						// diag bas gauche
+						coupsP.add(new Coup(j, i, j-1, i+1));
+					}
+					if((masque & 0x80) != 0){ // on masque le char avec 128 pour tester le déplacement vers la gauche
+						//gauche
+						coupsP.add(new Coup(j, i, j-1, i));
+					}
+					
+				}
+			}
+		}
+		
+		
+		
+		return coupsP;
 	}
+	
 	public void doMvt(Coup c) {
 		int dx=0, dy=0;
 		

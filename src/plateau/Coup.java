@@ -16,4 +16,11 @@ public class Coup {
 	public Coup(int pox, int poy, int pdx, int pdy) {
 		ox = pox; oy=poy; dx=pdx; dy=pdy;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append("<"+ox+" "+oy+"> -> <"+dx+" "+dy+"> ");
+		return str.toString();
+	}
 }
