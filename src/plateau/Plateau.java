@@ -105,6 +105,7 @@ public class Plateau {
 		}
 		
 		str.append("└─────────┘");
+		
 		str.append("\n");
 		
 		return str.toString();
