@@ -1,5 +1,6 @@
 package test;
 
+import plateau.Coup;
 import plateau.Plateau;
 
 public class test {
@@ -37,7 +38,9 @@ public class test {
 		Plateau p = new Plateau();
 		
 		System.out.println(p.getCoupPossible(1));
-		System.out.println(p.getCoupPossible(2));
+		p.doMvt(new Coup(3, 3, 4, 4));
+		System.out.println(p);
+		System.out.println(p.getCoupPossible(1));
 			
 	}
 	

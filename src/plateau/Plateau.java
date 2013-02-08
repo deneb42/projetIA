@@ -55,35 +55,43 @@ public class Plateau {
 					
 					if((masque & 0x1) != 0){ // on masque le char avec 1 pour tester le déplacement vers la diagonal haut gauche
 						//diag haut gauche
-						coupsP.add(new Coup(j, i, j-1, i-1));
+						if(grille[i-1][j-1] == v) // on s'assure que la case est vide
+							coupsP.add(new Coup(j, i, j-1, i-1));
 					}
 					if((masque & 0x2) != 0){ // on masque le char avec 2 pour tester le déplacement vers le haut 
 						// haut 
-						coupsP.add(new Coup(j, i, j, i-1));
+						if(grille[i-1][j] == v) // on s'assure que la case est vide
+							coupsP.add(new Coup(j, i, j, i-1));
 					}
 					if((masque & 0x4) != 0){ // on masque le char avec 4 pour tester le déplacement vers la	diagonale haut droite 
 						//diag haut droite
-						coupsP.add(new Coup(j, i, j+1, i-1));
+						if(grille[i-1][j+1] == v) // on s'assure que la case est vide
+							coupsP.add(new Coup(j, i, j+1, i-1));
 					}
 					if((masque & 0x8) != 0){ // on masque le char avec 8 pour tester le déplacement vers la droite 
-						// droite 
-						coupsP.add(new Coup(j, i, j+1, i));
+						// droite
+						if(grille[i][j+1] == v) // on s'assure que la case est vide
+							coupsP.add(new Coup(j, i, j+1, i));
 					}
 					if((masque & 0x10) != 0){ // on masque le char avec 16 pour tester le déplacement vers la diag bas droite 
-						// diag bas droite 
-						coupsP.add(new Coup(j, i, j+1, i+1));
+						// diag bas droite
+						if(grille[i+1][j+1] == v) // on s'assure que la case est vide
+							coupsP.add(new Coup(j, i, j+1, i+1));
 					}
 					if((masque & 0x20) != 0){ // on masque le char avec 32 pour tester le déplacement vers le bas 
-						//  bas 
-						coupsP.add(new Coup(j, i, j, i+1));
+						//  bas
+						if(grille[i+1][j] == v) // on s'assure que la case est vide
+							coupsP.add(new Coup(j, i, j, i+1));
 					}
 					if((masque & 0x40) != 0){ // on masque le char avec 64 pour tester le déplacement vers la diag bas gauche 
 						// diag bas gauche
-						coupsP.add(new Coup(j, i, j-1, i+1));
+						if(grille[i+1][j-1] == v) // on s'assure que la case est vide
+							coupsP.add(new Coup(j, i, j-1, i+1));
 					}
 					if((masque & 0x80) != 0){ // on masque le char avec 128 pour tester le déplacement vers la gauche
 						//gauche
-						coupsP.add(new Coup(j, i, j-1, i));
+						if(grille[i][j-1] == v) // on s'assure que la case est vide
+							coupsP.add(new Coup(j, i, j-1, i));
 					}
 					
 				}
