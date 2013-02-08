@@ -1,7 +1,6 @@
 package test;
 
 import plateau.Plateau;
-import joueur.Joueur;
 
 public class test {
 	
@@ -21,13 +20,13 @@ public class test {
 	public static void main(String args[]) {
 		Plateau p = new Plateau();
 		
-		if(((p.masqueCoups[0][4] & 0x10) != 0 ))
+		if(((p.masqueCoups[0][4] & 0x80) != 0 ))
 		{
 			System.out.println(p.masqueCoups[0][4] + " : gauche autorisée");
 		}
 		else System.out.println("fail1");
 		
-		if(((p.masqueCoups[0][2] & 0x10) == 0 ))
+		if(((p.masqueCoups[0][2] & 0x80) == 0 ))
 		{
 			System.out.println(p.masqueCoups[0][2] + " : gauche refusée");
 		}
