@@ -45,6 +45,10 @@ public class Plateau {
 	}
 	
 	public ArrayList<Coup> getCoupPossible(int couleur){
+		int autre;
+		if(couleur == b)
+			autre = n;
+		else autre = b;
 		
 		ArrayList<Coup> coupsP = new ArrayList<Coup>();
 		
@@ -57,41 +61,58 @@ public class Plateau {
 						//diag haut gauche
 						if(grille[i-1][j-1] == v) // on s'assure que la case est vide
 							coupsP.add(new Coup(j, i, j-1, i-1));
+						if(grille[i-1][j-1] == autre) // on a un ennemi
+							System.out.println((j-1)+" "+(i-11)+" ennemi");
+						
 					}
 					if((masque & 0x2) != 0){ // on masque le char avec 2 pour tester le déplacement vers le haut 
 						// haut 
 						if(grille[i-1][j] == v) // on s'assure que la case est vide
 							coupsP.add(new Coup(j, i, j, i-1));
+						if(grille[i-1][j] == autre) // on a un ennemi
+							System.out.println((j)+" "+(i-1)+" ennemi");
 					}
 					if((masque & 0x4) != 0){ // on masque le char avec 4 pour tester le déplacement vers la	diagonale haut droite 
 						//diag haut droite
 						if(grille[i-1][j+1] == v) // on s'assure que la case est vide
 							coupsP.add(new Coup(j, i, j+1, i-1));
+						if(grille[i-1][j+1] == autre) // on a un ennemi
+							System.out.println((j+1)+" "+(i-1)+" ennemi");
 					}
 					if((masque & 0x8) != 0){ // on masque le char avec 8 pour tester le déplacement vers la droite 
 						// droite
 						if(grille[i][j+1] == v) // on s'assure que la case est vide
 							coupsP.add(new Coup(j, i, j+1, i));
+						if(grille[i][j+1] == autre) // on a un ennemi
+							System.out.println((j+1)+" "+(i)+" ennemi");
 					}
 					if((masque & 0x10) != 0){ // on masque le char avec 16 pour tester le déplacement vers la diag bas droite 
 						// diag bas droite
 						if(grille[i+1][j+1] == v) // on s'assure que la case est vide
 							coupsP.add(new Coup(j, i, j+1, i+1));
+						if(grille[i+1][j+1] == autre) // on a un ennemi
+							System.out.println((j+1)+" "+(i+1)+" ennemi");
 					}
 					if((masque & 0x20) != 0){ // on masque le char avec 32 pour tester le déplacement vers le bas 
 						//  bas
 						if(grille[i+1][j] == v) // on s'assure que la case est vide
 							coupsP.add(new Coup(j, i, j, i+1));
+						if(grille[i+1][j] == autre) // on a un ennemi
+							System.out.println((j)+" "+(i+1)+" ennemi");
 					}
 					if((masque & 0x40) != 0){ // on masque le char avec 64 pour tester le déplacement vers la diag bas gauche 
 						// diag bas gauche
 						if(grille[i+1][j-1] == v) // on s'assure que la case est vide
 							coupsP.add(new Coup(j, i, j-1, i+1));
+						if(grille[i+1][j-1] == autre) // on a un ennemi
+							System.out.println((j-1)+" "+(i+1)+" ennemi");
 					}
 					if((masque & 0x80) != 0){ // on masque le char avec 128 pour tester le déplacement vers la gauche
 						//gauche
 						if(grille[i][j-1] == v) // on s'assure que la case est vide
 							coupsP.add(new Coup(j, i, j-1, i));
+						if(grille[i][j-1] == autre) // on a un ennemi
+							System.out.println((j-1)+" "+(i)+" ennemi");
 					}
 					
 				}
